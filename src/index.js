@@ -1,6 +1,4 @@
-const { Client, Intents } = require('discord.js')
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
+const Enhancer = require('./Enhancer.js')
+const enhancer = new Enhancer()
 
-client.on('ready', () => console.log(client.user))
-
-client.login()
+enhancer.login()
