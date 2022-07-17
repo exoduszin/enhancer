@@ -1,0 +1,30 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["standard", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["eslint-plugin-import-helpers", "prettier"],
+  "rules": {
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "/^@retromada/",
+          "module",
+          "/^@(interfaces|loaders|structures|utils)/",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "no-useless-constructor": "off",
+    "space-before-function-paren": ["error", "always"],
+    "prettier/prettier": "off"
+  }
+}
