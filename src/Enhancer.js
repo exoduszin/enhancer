@@ -6,6 +6,8 @@ module.exports = class Enhancer extends Client {
   constructor () {
     super({ intents: [Intents.FLAGS.GUILDS] })
 
+    this.commands = new Map()
+
     this.initializeLoaders()
   }
 

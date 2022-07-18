@@ -2,9 +2,11 @@
   "name": "enhancer",
   "private": true,
   "scripts": {
-    "dev": "nodemon -r dotenv/config src/index.js"
+    "dev": "nodemon -r dotenv/config src/index.js",
+    "deploy-commands": "node -r dotenv/config src/deployCommands.js"
   },
   "dependencies": {
+    "@discordjs/builders": "^1.0.0",
     "discord.js": "^13.8.1"
   },
   "devDependencies": {
@@ -19,5 +21,9 @@
     "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
+  },
+  "optionalDependencies": {
+    "@discordjs/rest": "^1.0.0",
+    "discord-api-types": "^0.36.2"
   }
 }
