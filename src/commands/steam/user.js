@@ -31,28 +31,43 @@ module.exports = class User extends Command {
           })
           .setThumbnail(userData.avatar_url.full)
           .addFields(
-            { name: 'Realname', value: userData.realname },
-            { name: 'Level', value: userData.level.toString(), inline: true },
-            { name: 'Status', value: userData.status, inline: true },
-            { name: 'Privacy', value: userData.privacy, inline: true },
-            { name: 'Location', value: userData.location },
-            { name: 'VAC', value: yn(userData.limitations.vac), inline: true },
-            {
-              name: 'Trade Ban',
-              value: yn(userData.limitations.trade_ban),
-              inline: true
-            },
-            {
-              name: 'limited',
-              value: yn(userData.limitations.limited),
-              inline: true
-            },
-            { name: 'Steam 3ID', value: userData.steam_3id },
-            { name: 'Steam ID32', value: userData.steam_id32 },
-            { name: 'Steam ID64', value: userData.steam_id64 },
-            { name: 'Custom URL', value: userData.custom_url }
+            [
+              { name: 'Realname', value: userData.realname ?? '{REALNAME}' },
+              {
+                name: 'Level',
+                value: userData.level?.toString() ?? '{LEVEL}',
+                inline: true
+              },
+              { name: 'Status', value: userData.status, inline: true },
+              { name: 'Privacy', value: userData.privacy, inline: true },
+              { name: 'Location', value: userData.location ?? '{LOCATION}' },
+              {
+                name: 'VAC',
+                value: yn(userData.limitations.vac),
+                inline: true
+              },
+              {
+                name: 'Trade Ban',
+                value: yn(userData.limitations.trade_ban),
+                inline: true
+              },
+              {
+                name: 'limited',
+                value: yn(userData.limitations.limited),
+                inline: true
+              },
+              { name: 'Steam 3ID', value: userData.steam_3id },
+              { name: 'Steam ID32', value: userData.steam_id32 },
+              { name: 'Steam ID64', value: userData.steam_id64 },
+              userData.custom_url && {
+                name: 'Custom URL',
+                value: userData.custom_url
+              }
+            ].filter(Boolean)
           )
-          .setFooter({ text: `Member since ${userData.member_since}` })
+          .setFooter({
+            text: `Member since ${userData.member_since ?? '{MEMBER_SINCE}'}`
+          })
       ]
     })
   }
